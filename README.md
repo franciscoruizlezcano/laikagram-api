@@ -12,13 +12,12 @@
 Instagram clone open source
 
 ##Deploy
-```https://laikagram-api.herokuapp.com/```
-
-##Client HTTP
-```https://laikagram-api.herokuapp.com/```
+https://laikagram-api.herokuapp.com/
 
 ##D.E.R
 ![](/docs/der.png)
+##Project base 
+[monolith-clean-architecture](https://github.com/franciscoruizlezcano/monolith-clean-architecture "monolith-clean-architecture")
 
 ##HTTP Objects Request and Responses
 ###User
@@ -28,8 +27,8 @@ Instagram clone open source
 /users/{id}
 ```
 
-```javascript
-REQUEST BODY:
+##### REQUEST BODY
+```
 {
     "username" : "",
     "password" : "",
@@ -37,26 +36,25 @@ REQUEST BODY:
 }
 ```
 
-####GET 
-```javascript 
+####GET BY ID
+``` 
 /users/{id}
 ```
 
-```javascript
-RESPONSE BODY:
+##### REQUEST BODY
+```
 {
     "id" : ""
     "username" : "",
     "url_photo" : ""
 }
 ```
-
-``` javascript 
+####GET BY CRITERIA
+``` 
 /users
 ```
-
-```javascript
-REQUEST BODY: 
+##### REQUEST BODY
+```
 {
     "filters":[
         {
@@ -71,10 +69,9 @@ REQUEST BODY:
     "offset" : ""   
 }
 ```
+##### RESPONSE BODY
 
-```javascript
-RESPONSE BODY:
-
+```
 [
     {
         "id" : "",
@@ -86,26 +83,26 @@ RESPONSE BODY:
 ####Post
 
 ####PUT
-``` javascript 
+``` 
 /posts/{id}
 ```
-```javascript
-REQUEST BODY: 
+##### REQUEST BODY
+```
 {
     "url_media" : "",
     "caption" : "",
     "user_id : "
 }                        
 ```
-####GET
-```javascript 
+####GET BY ID
+``` 
 /posts/{id}
 ```
+##### RESPONSE BODY
 
-```javascript
-RESPONSE BODY:
+```
 {
-    "url_media" : "",            
+    "url_media" : "",
     "caption" : "",
     "user" : {
                 "id" : "",
@@ -115,12 +112,13 @@ RESPONSE BODY:
 }
 ``` 
 
+#### GET BY CRITERIA
 
-```javascript 
+``` 
 /posts
 ```
-```javascript
-REQUEST BODY:
+##### REQUEST BODY
+```
 {
     "filters":[
         {
@@ -132,12 +130,12 @@ REQUEST BODY:
     "limit" : 1,
     "order_by" : "",
     "order" : "",
-    "offset" : ""   
+    "offset" : ""
 }
 ```
+##### RESPONSE BODY
 
-```javascript
-RESPONSE BODY:
+```
 [
     {
         "url_media" : "",            
@@ -155,28 +153,25 @@ RESPONSE BODY:
 ####Follow
 
 ####PUT
-```javascript
+```
 /follows/{id}
 ```
 
-```javascript
-
-REQUEST BODY:
-
+##### REQUEST BODY
+```
 {
     "followed_id" : "",
     "follower_id" : ""
 }
 ```
-####GET
+####GET BY ID
 
-```javascript
+```
 /follows/{id}
 ```
+##### RESPONSE BODY
 
-```javascript
-RESPONSE BODY: 
-
+```
 {
     "id" : ""
     "followed" : {
@@ -191,12 +186,12 @@ RESPONSE BODY:
                 }
 }
 ```
-
-```javascript
+####GET BY CRITERIA
+```
 /follows
 ```
-```javascript
-REQUEST BODY:
+##### REQUEST BODY
+```
 {
     "filters":[
         {
@@ -211,9 +206,8 @@ REQUEST BODY:
     "offset" : ""   
 }
 ```
-
-```javascript
-RESPONSE BODY:
+##### RESPONSE BODY
+```
 [
     {
         "id" : ""
