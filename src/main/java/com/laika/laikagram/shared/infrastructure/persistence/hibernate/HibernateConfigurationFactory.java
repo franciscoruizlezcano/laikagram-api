@@ -81,19 +81,17 @@ public final class HibernateConfigurationFactory {
     }
 
     private Properties hibernateProperties() {
-        Dotenv dotenv = Dotenv.load();
-
         return new Properties() {{
 
             put(Environment.DRIVER, "org.postgresql.Driver");
 
             put(Environment.DIALECT, "org.hibernate.dialect.PostgresPlusDialect");
 
-            put(Environment.URL, dotenv.get("DATABASE_URL"));
+            put(Environment.URL, System.getenv("JDBC_DATABASE_URL"));
 
-            put(Environment.USER, dotenv.get("DATABASE_USERNAME"));
+            put(Environment.USER, System.getenv("JDBC_DATABASE_USERNAME"));
 
-            put(Environment.PASS, dotenv.get("DATABASE_PASSWORD"));
+            put(Environment.PASS, System.getenv("JDBC_DATABASE_PASSWORD"));
 
             put(Environment.HBM2DDL_AUTO, "update");
 
