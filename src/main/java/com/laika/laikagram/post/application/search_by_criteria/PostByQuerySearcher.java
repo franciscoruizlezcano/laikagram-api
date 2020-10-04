@@ -2,7 +2,7 @@ package com.laika.laikagram.post.application.search_by_criteria;
 
 import com.laika.laikagram.post.application.PostResponse;
 import com.laika.laikagram.post.domain.PostId;
-import com.laika.laikagram.post.domain.PostNotExists;
+import com.laika.laikagram.post.domain.PostNotExist;
 import com.laika.laikagram.post.domain.PostRepository;
 
 public final class PostByQuerySearcher {
@@ -18,7 +18,7 @@ public final class PostByQuerySearcher {
         return PostResponse.fromAggregate(
                 this.repository
                         .search(postId)
-                        .orElseThrow(() -> new PostNotExists(postId))
+                        .orElseThrow(() -> new PostNotExist(postId))
         );
     }
 }

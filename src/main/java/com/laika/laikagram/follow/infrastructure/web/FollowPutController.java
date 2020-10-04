@@ -1,9 +1,9 @@
-package com.laika.laikagram.user.infrastructure.web;
+package com.laika.laikagram.follow.infrastructure.web;
 
 import com.laika.laikagram.shared.infrastructure.JavaUuidGenerator;
-import com.laika.laikagram.user.application.CreateUser;
-import com.laika.laikagram.user.application.creator.UserCreator;
-import com.laika.laikagram.user.infrastructure.persistence.HibernateUserRepository;
+import com.laika.laikagram.follow.application.CreateFollow;
+import com.laika.laikagram.follow.application.creator.FollowCreator;
+import com.laika.laikagram.follow.infrastructure.persistence.HibernateFollowRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,27 +15,26 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 @RestController
-public final class UserPutController {
-    private final UserCreator creator;
+public final class FollowPutController {
+    private final FollowCreator creator;
 
-    public UserPutController() {
-        this.creator = new UserCreator(
-                new HibernateUserRepository(),
+    public FollowPutController() {
+        this.creator = new FollowCreator(
+                new HibernateFollowRepository(),
                 new JavaUuidGenerator()
         );
     }
 
-    @PutMapping(value = "/users/{id}")
+    @PutMapping(value = "/follows/{id}")
     public ResponseEntity<String> index(
             @PathVariable String id,
             @RequestBody HashMap<String, Serializable> request
     ) {
         this.creator.create(
-                new CreateUser(
+                new CreateFollow(
                         id,
-                        request.get("username").toString(),
-                        request.get("password").toString(),
-                        request.get("url_photo").toString()
+                        (String) request.get("followed_id"),
+                        (String) request.get("follower_id")
                 )
         );
         return new ResponseEntity<>(HttpStatus.CREATED);

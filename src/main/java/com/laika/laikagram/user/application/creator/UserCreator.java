@@ -1,6 +1,7 @@
-package com.laika.laikagram.user.application;
+package com.laika.laikagram.user.application.creator;
 
 import com.laika.laikagram.shared.domain.UuidGenerator;
+import com.laika.laikagram.user.application.CreateUser;
 import com.laika.laikagram.user.domain.User;
 import com.laika.laikagram.user.domain.UserId;
 import com.laika.laikagram.user.domain.UserRepository;

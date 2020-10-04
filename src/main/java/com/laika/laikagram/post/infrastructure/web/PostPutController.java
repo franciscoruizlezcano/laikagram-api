@@ -2,7 +2,7 @@ package com.laika.laikagram.post.infrastructure.web;
 
 import com.laika.laikagram.shared.infrastructure.JavaUuidGenerator;
 import com.laika.laikagram.post.application.CreatePost;
-import com.laika.laikagram.post.application.PostCreator;
+import com.laika.laikagram.post.application.creator.PostCreator;
 import com.laika.laikagram.post.infrastructure.persistence.HibernatePostRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

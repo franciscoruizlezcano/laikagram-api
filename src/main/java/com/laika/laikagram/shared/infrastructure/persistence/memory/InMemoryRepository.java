@@ -25,4 +25,12 @@ public abstract class InMemoryRepository<T> {
                 ? Optional.ofNullable(entities.get(key))
                 : Optional.empty();
     }
+
+    protected int count(){
+        return this.entities.size();
+    }
+
+    protected void remove(Serializable key){
+        this.entities.remove(key);
+    }
 }

@@ -1,0 +1,15 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.laika.laikagram.follow.domain.Follow" table="follows">
+        <composite-id name="id" class="com.laika.laikagram.follow.domain.FollowId" access="field">
+            <key-property column="id" name="value" length="36" access="field"/>
+        </composite-id>
+
+        <many-to-one name="followed" access="field" column="followed_id" class="com.laika.laikagram.user.domain.User" not-null="false"/>
+        <many-to-one name="follower" access="field" column="follower_id" class="com.laika.laikagram.user.domain.User" not-null="false"/>
+
+    </class>
+</hibernate-mapping>

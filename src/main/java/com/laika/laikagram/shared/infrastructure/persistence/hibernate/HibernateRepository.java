@@ -89,4 +89,15 @@ public abstract class HibernateRepository<T> {
 
         return Collections.emptyList();
     }
+
+    protected void delete(T t){
+        try{
+            this.openSession();
+            this.getSession().delete(t);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.closeSession();
+        }
+    }
 }

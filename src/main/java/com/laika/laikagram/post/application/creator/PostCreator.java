@@ -1,5 +1,6 @@
-package com.laika.laikagram.post.application;
+package com.laika.laikagram.post.application.creator;
 
+import com.laika.laikagram.post.application.CreatePost;
 import com.laika.laikagram.shared.domain.UuidGenerator;
 import com.laika.laikagram.post.domain.Post;
 import com.laika.laikagram.post.domain.PostId;

@@ -23,7 +23,7 @@ public final class PostsGetController {
 
     @GetMapping("/posts")
     public ResponseEntity<List<HashMap<String, String>>> index(
-            @RequestBody HashMap<String, Serializable> params
+            @RequestBody(required = false) HashMap<String, Serializable> params
     ) {
         List<HashMap<String, Serializable>> filters = params.get("filters") == null ? Collections.EMPTY_LIST : (List<HashMap<String, Serializable>>) params.get("filters");
 
