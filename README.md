@@ -8,28 +8,295 @@
 - Swagger documentation
 - Upload media with Firebase 
 
-# Monolith Clean Architecture 
+# Laikagram API 
+Instagram clone open source
 
-![](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn-images-1.medium.com%2Fmax%2F1200%2F1*B7LkQDyDqLN3rRSrNYkETA.jpeg&f=1&nofb=1)
+##Deploy
+```https://laikagram-api.herokuapp.com/```
+
+##Client HTTP
+```https://laikagram-api.herokuapp.com/```
+
+##D.E.R
+![](/docs/der.png)
+
+##HTTP Objects Request and Responses
+###User
+
+####PUT
+``` 
+/users/{id}
+```
+
+```javascript
+REQUEST BODY:
+{
+    "username" : "",
+    "password" : "",
+    "url_photo" : ""
+}
+```
+
+####GET 
+```javascript 
+/users/{id}
+```
+
+```javascript
+RESPONSE BODY:
+{
+    "id" : ""
+    "username" : "",
+    "url_photo" : ""
+}
+```
+
+``` javascript 
+/users
+```
+
+```javascript
+REQUEST BODY: 
+{
+    "filters":[
+        {
+            "field" : ""
+            "operator" : ""
+            "value" : ""
+        },
+    ],
+    "limit" : 1,
+    "order_by" : "",
+    "order" : "",
+    "offset" : ""   
+}
+```
+
+```javascript
+RESPONSE BODY:
+
+[
+    {
+        "id" : "",
+        "username" : "",
+        "url_photo" : ""
+    },
+]
+```
+####Post
+
+####PUT
+``` javascript 
+/posts/{id}
+```
+```javascript
+REQUEST BODY: 
+{
+    "url_media" : "",
+    "caption" : "",
+    "user_id : "
+}                        
+```
+####GET
+```javascript 
+/posts/{id}
+```
+
+```javascript
+RESPONSE BODY:
+{
+    "url_media" : "",            
+    "caption" : "",
+    "user" : {
+                "id" : "",
+                "username" : "",
+                "url_photo" : ""
+            }
+}
+``` 
 
 
+```javascript 
+/posts
+```
+```javascript
+REQUEST BODY:
+{
+    "filters":[
+        {
+            "field" : ""
+            "operator" : ""
+            "value" : ""
+        },
+    ],
+    "limit" : 1,
+    "order_by" : "",
+    "order" : "",
+    "offset" : ""   
+}
+```
 
-#Purpose of this Repository 🤟
-- Showing how you can implement a monolith application in a modular way
-- Showing the application of best practices and object-oriented programming principles
-- SOLID Principles
-- Presentation of the use of design patterns. When, how and why they can be used
-- Application decoupling from the frameworks
+```javascript
+RESPONSE BODY:
+[
+    {
+        "url_media" : "",            
+        "caption" : "",
+        "user" : {
+                    "id" : "",
+                    "username" : "",
+                    "url_photo" : ""
+                }
+    }
+]
+```
 
 
-##Project structure tree
+####Follow
+
+####PUT
+```javascript
+/follows/{id}
+```
+
+```javascript
+
+REQUEST BODY:
+
+{
+    "followed_id" : "",
+    "follower_id" : ""
+}
+```
+####GET
+
+```javascript
+/follows/{id}
+```
+
+```javascript
+RESPONSE BODY: 
+
+{
+    "id" : ""
+    "followed" : {
+                    "id" : "",
+                    "username" : "",
+                    "url_photo" : ""
+                 },
+    "follower" : {
+                    "id" : "",
+                    "username" : "",
+                    "url_photo" : ""
+                }
+}
+```
+
+```javascript
+/follows
+```
+```javascript
+REQUEST BODY:
+{
+    "filters":[
+        {
+            "field" : ""
+            "operator" : ""
+            "value" : ""
+        },
+    ],
+    "limit" : 1,
+    "order_by" : "",
+    "order" : "",
+    "offset" : ""   
+}
+```
+
+```javascript
+RESPONSE BODY:
+[
+    {
+        "id" : ""
+        "followed" : {
+                        "id" : "",
+                        "username" : "",
+                        "url_photo" : ""
+                     },
+        "follower" : {
+                        "id" : "",
+                        "username" : "",
+                        "url_photo" : ""
+                    }
+    }
+]
+```
+
+###Project structure tree
 
 ```
-└── main
+main
     ├── java
     │   └── com
     │       └── laika
-    │           └── application
+    │           └── laikagram
+    │               ├── follow
+    │               │   ├── application
+    │               │   │   ├── counter
+    │               │   │   │   └── FollowCounter.java
+    │               │   │   ├── CreateFollow.java
+    │               │   │   ├── creator
+    │               │   │   │   └── FollowCreator.java
+    │               │   │   ├── deletor
+    │               │   │   │   └── FollowDeletor.java
+    │               │   │   ├── FollowResponse.java
+    │               │   │   ├── FollowsResponse.java
+    │               │   │   ├── search_all
+    │               │   │   │   └── FollowsSearcher.java
+    │               │   │   └── search_by_criteria
+    │               │   │       ├── FollowByQuerySearcher.java
+    │               │   │       └── FollowsByCriteriaSearcher.java
+    │               │   ├── domain
+    │               │   │   ├── FollowId.java
+    │               │   │   ├── Follow.java
+    │               │   │   ├── FollowNotExist.java
+    │               │   │   └── FollowRepository.java
+    │               │   └── infrastructure
+    │               │       ├── persistence
+    │               │       │   ├── hibernate
+    │               │       │   │   └── Follow.hbm.xml
+    │               │       │   ├── HibernateFollowRepository.java
+    │               │       │   └── InMemoryFollowRepository.java
+    │               │       └── web
+    │               │           ├── FollowGetController.java
+    │               │           ├── FollowPutController.java
+    │               │           └── FollowsGetController.java
+    │               ├── post
+    │               │   ├── application
+    │               │   │   ├── CreatePost.java
+    │               │   │   ├── creator
+    │               │   │   │   └── PostCreator.java
+    │               │   │   ├── PostResponse.java
+    │               │   │   ├── PostsResponse.java
+    │               │   │   ├── search_all
+    │               │   │   │   └── PostsSearcher.java
+    │               │   │   └── search_by_criteria
+    │               │   │       ├── PostByQuerySearcher.java
+    │               │   │       └── PostsByCriteriaSearcher.java
+    │               │   ├── domain
+    │               │   │   ├── PostId.java
+    │               │   │   ├── Post.java
+    │               │   │   ├── PostNotExist.java
+    │               │   │   └── PostRepository.java
+    │               │   └── infrastructure
+    │               │       ├── persistence
+    │               │       │   ├── hibernate
+    │               │       │   │   └── Post.hbm.xml
+    │               │       │   ├── HibernatePostRepository.java
+    │               │       │   └── InMemoryPostRepository.java
+    │               │       └── web
+    │               │           ├── PostGetController.java
+    │               │           ├── PostPutController.java
+    │               │           └── PostsGetController.java
     │               ├── shared
     │               │   ├── application
     │               │   │   └── media
@@ -45,18 +312,23 @@
     │               │   │   │   ├── FilterValue.java
     │               │   │   │   ├── OrderBy.java
     │               │   │   │   ├── Order.java
-    │               │   │   │   └── OrderType.java
+    │               │   │   │   ├── OrderType.java
+    │               │   │   │   └── ParseFiltersUtil.java
     │               │   │   ├── DomainError.java
     │               │   │   ├── Identifier.java
     │               │   │   ├── IntValueObject.java
     │               │   │   ├── media
     │               │   │   │   ├── FailedUploadException.java
     │               │   │   │   └── MediaService.java
+    │               │   │   ├── repository
+    │               │   │   │   ├── MatchingRepository.java
+    │               │   │   │   ├── Repository.java
+    │               │   │   │   ├── SaveRepository.java
+    │               │   │   │   └── SearchRepository.java
     │               │   │   ├── StringValueObject.java
     │               │   │   ├── util
     │               │   │   │   ├── DateUtil.java
     │               │   │   │   ├── JsonUtil.java
-    │               │   │   │   ├── PackageUtil.java
     │               │   │   │   ├── ReadPropertiesFileUtil.java
     │               │   │   │   └── StringUtil.java
     │               │   │   └── UuidGenerator.java
@@ -64,8 +336,8 @@
     │               │       ├── JavaUuidGenerator.java
     │               │       ├── media
     │               │       │   └── firebase
-    │               │       │       ├── FirebaseStorageMediaService.java
-    │               │       │       └── ParamEnum.java
+    │               │       │       ├── FirebaseHttpParam.java
+    │               │       │       └── FirebaseStorageMediaService.java
     │               │       ├── persistence
     │               │       │   ├── hibernate
     │               │       │   │   ├── HibernateConfigurationFactory.java
@@ -75,31 +347,30 @@
     │               │       │       └── InMemoryRepository.java
     │               │       └── web
     │               │           └── spring
-    │               │               ├── docs
+    │               │               ├── config
+    │               │               │   ├── ExceptionsHandler.java
     │               │               │   └── SwaggerConfig.java
-    │               │               └── IndexController.java
+    │               │               ├── ErrorMessage.java
+    │               │               ├── IndexController.java
+    │               │               └── MediaController.java
     │               ├── Starter.java
     │               └── user
     │                   ├── application
     │                   │   ├── CreateUser.java
     │                   │   ├── creator
     │                   │   │   └── UserCreator.java
-    │                   │   ├── searcher
-    │                   │   │   ├── AllUsersSearcher.java
-    │                   │   │   ├── ByIdUserSearcher.java
-    │                   │   │   ├── ByUsernameUserSearcher.java
-    │                   │   │   └── LastUsersSearcher.java
-    │                   │   ├── updater
-    │                   │   │   └── UserUpdater.java
-    │                   │   ├── UserRequest.java
+    │                   │   ├── search_all
+    │                   │   │   └── UsersSearcher.java
+    │                   │   ├── search_by_criteria
+    │                   │   │   ├── UserByQuerySearcher.java
+    │                   │   │   └── UsersByCriteriaSearcher.java
     │                   │   ├── UserResponse.java
     │                   │   └── UsersResponse.java
     │                   ├── domain
     │                   │   ├── UserId.java
     │                   │   ├── User.java
     │                   │   ├── UserNotExist.java
-    │                   │   ├── UserRepository.java
-    │                   │   └── UserUsername.java
+    │                   │   └── UserRepository.java
     │                   └── infrastructure
     │                       ├── persistence
     │                       │   ├── hibernate
@@ -107,148 +378,10 @@
     │                       │   ├── HibernateUserRepository.java
     │                       │   └── InMemoryUserRepository.java
     │                       └── web
-    │                           ├── GetAllUsersController.java
-    │                           ├── GetByIdUserController.java
-    │                           ├── GetByUsernameUserController.java
-    │                           ├── GetLastUsersController.java
-    │                           ├── PostUserController.java
-    │                           └── PutUserController.java
+    │                           ├── UserGetController.java
+    │                           ├── UserPutController.java
+    │                           └── UsersGetController.java
     └── resources
-        ├── app.properties
         └── log4j2.xml
-
-```
-
-## Layers🕵
-The application is structured in a "who are you" way, that is, it will have as many packages in the main root as there are use cases
-
-Each use case package is divided by domain, application, and infrastructure.
-
-### Domain
-Here will go all the domains of our application such as:
-- Entities and object mappers of domain
-- Exceptions of domain
-- Entitie Repository interface
-
-In this layer you can only access the application layer
-
-*Example: * User module
-
-```
-user.
-├─ domain
-   ├── UserId.java
-   ├── User.java
-   ├── UserNotExist.java
-   ├── UserRepository.java
-   └── UserUsername.java
-
-```
-
-### Application
-Here will go all:
-- Bussiness logic
-- Injection dependecies
-- Access to domain layer
-- DTOs for clients 
-
-In this layer you can only access the infrastructure layer
-
-`
-```
-├── application
-   ├── CreateUser.java
-   ├── creator
-   │   └── UserCreator.java
-   ├── searcher
-   │   ├── AllUsersSearcher.java
-   │   ├── ByIdUserSearcher.java
-   │   ├── ByUsernameUserSearcher.java
-   │   └── LastUsersSearcher.java
-   ├── updater
-   │   └── UserUpdater.java
-   ├── UserRequest.java
-   ├── UserResponse.java
-   └── UsersResponse.java
-
-```
-
-### Infrastructure
-Here will go all:
-- XML Mapping entities of Hibernate
-- Spring REST Controller
-- Hibernate configuration
-- InMemory Configuration
-
-This layer will only have contact with the outside world and the events of the application
-
-```
-└── infrastructure
-    ├── persistence
-    │   ├── hibernate
-    │   │   └── User.hbm.xml
-    │   ├── HibernateUserRepository.java
-    │   └── InMemoryUserRepository.java
-    └── web
-        ├── GetAllUsersController.java
-        ├── GetByIdUserController.java
-        ├── GetByUsernameUserController.java
-        ├── GetLastUsersController.java
-        ├── PostUserController.java
-        └── PutUserController.java
-
-```
-
-## Shared module
-```
-.
-├── application
-│   └── media
-│       └── UploadMedia.java
-├── domain
-│   ├── Command.java
-│   ├── criteria
-│   │   ├── Criteria.java
-│   │   ├── FilterField.java
-│   │   ├── Filter.java
-│   │   ├── FilterOperator.java
-│   │   ├── Filters.java
-│   │   ├── FilterValue.java
-│   │   ├── OrderBy.java
-│   │   ├── Order.java
-│   │   └── OrderType.java
-│   ├── DomainError.java
-│   ├── Identifier.java
-│   ├── IntValueObject.java
-│   ├── media
-│   │   ├── FailedUploadException.java
-│   │   └── MediaService.java
-│   ├── StringValueObject.java
-│   ├── util
-│   │   ├── DateUtil.java
-│   │   ├── JsonUtil.java
-│   │   ├── PackageUtil.java
-│   │   ├── ReadPropertiesFileUtil.java
-│   │   └── StringUtil.java
-│   └── UuidGenerator.java
-└── infrastructure
-    ├── JavaUuidGenerator.java
-    ├── media
-    │   └── firebase
-    │       ├── FirebaseStorageMediaService.java
-    │       └── ParamEnum.java
-    ├── persistence
-    │   ├── hibernate
-    │   │   ├── HibernateConfigurationFactory.java
-    │   │   ├── HibernateCriteriaConverter.java
-    │   │   └── HibernateRepository.java
-    │   └── memory
-    │       └── InMemoryRepository.java
-    └── web
-        └── spring
-            ├── docs
-            │   └── SwaggerConfig.java
-            └── IndexController.java
-
 
 ```
