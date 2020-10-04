@@ -5,15 +5,21 @@ import java.util.Objects;
 public final class User {
     private final UserId id;
     private final String username;
+    private final String password;
+    private final String urlPhoto;
 
-    public User(UserId id, String username) {
+    public User(UserId id, String username, String password, String urlPhoto) {
         this.id       = id;
         this.username = username;
+        this.password = password;
+        this.urlPhoto = urlPhoto;
     }
 
-    private User() {
+    public User() {
         this.id       = null;
         this.username = null;
+        this.password = null;
+        this.urlPhoto = null;
     }
 
     public UserId id() {
@@ -22,6 +28,14 @@ public final class User {
 
     public String username() {
         return username;
+    }
+
+    public String password() {
+        return password;
+    }
+
+    public String urlPhoto() {
+        return urlPhoto;
     }
 
     @Override

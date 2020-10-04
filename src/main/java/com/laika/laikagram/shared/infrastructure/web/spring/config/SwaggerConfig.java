@@ -25,7 +25,7 @@ public class SwaggerConfig {
                 .build();
     }
 
-    private ApiInfo getApiInformation(){
+    private ApiInfo getApiInformation() {
         return new ApiInfo("Monolith Clean Architecture REST API",
                 "This is a Monolith Clean Architecture API created using Spring Boot",
                 "1.0",

@@ -1,7 +1,7 @@
 package com.laika.laikagram.user.infrastructure.web;
 
 import com.laika.laikagram.user.application.UserResponse;
-import com.laika.laikagram.user.application.search_by_criteria.CourseByQuerySearcher;
+import com.laika.laikagram.user.application.search_by_criteria.UserByQuerySearcher;
 import com.laika.laikagram.user.infrastructure.persistence.HibernateUserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +13,10 @@ import java.util.HashMap;
 
 @RestController
 public final class UserGetController {
-    private final CourseByQuerySearcher searcher;
+    private final UserByQuerySearcher searcher;
 
     public UserGetController() {
-        this.searcher = new CourseByQuerySearcher(new HibernateUserRepository());
+        this.searcher = new UserByQuerySearcher(new HibernateUserRepository());
     }
 
     @GetMapping("/users/{id}")
@@ -27,6 +27,7 @@ public final class UserGetController {
         return ResponseEntity.ok().body(new HashMap<>() {{
             put("id", user.id());
             put("username", user.username());
+            put("url_photo", user.urlPhoto());
         }});
     }
 }

@@ -38,10 +38,11 @@ public final class UsersGetController {
         );
 
         return ResponseEntity.ok().body(
-            users.users().stream().map(response -> new HashMap<String, String>(){{
-                put("id", response.id());
-                put("username", response.username());
-            }}).collect(Collectors.toList())
+                users.users().stream().map(response -> new HashMap<String, String>() {{
+                    put("id", response.id());
+                    put("username", response.username());
+                    put("url_photo", response.urlPhoto());
+                }}).collect(Collectors.toList())
         );
     }
 }

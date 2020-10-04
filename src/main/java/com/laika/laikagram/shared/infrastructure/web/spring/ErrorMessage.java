@@ -3,7 +3,7 @@ package com.laika.laikagram.shared.infrastructure.web.spring;
 import java.util.Date;
 
 public final class ErrorMessage {
-    private Date date;
+    private Date   date;
     private String message;
 
     public ErrorMessage() {

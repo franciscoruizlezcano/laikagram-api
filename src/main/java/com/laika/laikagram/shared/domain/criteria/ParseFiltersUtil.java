@@ -14,7 +14,7 @@ public final class ParseFiltersUtil {
 
         List<HashMap<String, String>> filters = new ArrayList<>();
 
-        for (HashMap<String, Serializable> param : params){
+        for (HashMap<String, Serializable> param : params) {
             filters.add(new HashMap<>() {{
                 put("field", (String) param.get("field"));
                 put("operator", (String) param.get("operator"));

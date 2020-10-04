@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 
 public class FirebaseStorageMediaService implements MediaService {
-    private final static String URI_HTTP       = "https://firebasestorage.googleapis.com/v0/b/";
+    private final static String URI_HTTP = "https://firebasestorage.googleapis.com/v0/b/";
 
     @Override
     public String upload(byte[] file) throws FailedUploadException {

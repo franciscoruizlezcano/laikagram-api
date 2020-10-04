@@ -19,7 +19,7 @@ public final class ExceptionsHandler extends ResponseEntityExceptionHandler {
 
         String errorMessageDescription = ex.getLocalizedMessage();
 
-        if(errorMessageDescription == null) errorMessageDescription = ex.toString();
+        if (errorMessageDescription == null) errorMessageDescription = ex.toString();
 
         ErrorMessage errorMessage = new ErrorMessage(new Date(), errorMessageDescription);
 
@@ -31,12 +31,12 @@ public final class ExceptionsHandler extends ResponseEntityExceptionHandler {
                 );
     }
 
-    @ExceptionHandler(value = { NullPointerException.class})
+    @ExceptionHandler(value = {NullPointerException.class})
     public ResponseEntity<Object> handleSpecificExceptions(Exception ex, WebRequest request) {
 
         String errorMessageDescription = ex.getLocalizedMessage();
 
-        if(errorMessageDescription == null) errorMessageDescription = ex.toString();
+        if (errorMessageDescription == null) errorMessageDescription = ex.toString();
 
         ErrorMessage errorMessage = new ErrorMessage(new Date(), errorMessageDescription);
 
@@ -45,12 +45,12 @@ public final class ExceptionsHandler extends ResponseEntityExceptionHandler {
 
     }
 
-    @ExceptionHandler(value = { UserNotExist.class })
+    @ExceptionHandler(value = {UserNotExist.class})
     public ResponseEntity<Object> handleNotExistsExceptions(Exception ex, WebRequest request) {
 
         String errorMessageDescription = ex.getLocalizedMessage();
 
-        if(errorMessageDescription == null) errorMessageDescription = ex.toString();
+        if (errorMessageDescription == null) errorMessageDescription = ex.toString();
 
         ErrorMessage errorMessage = new ErrorMessage(new Date(), errorMessageDescription);
 
